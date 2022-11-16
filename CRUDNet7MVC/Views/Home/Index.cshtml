@@ -1,8 +1,94 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<CRUDNet7MVC.Models.Contact>
+@{
+    ViewData["Title"] = "Lista de Contactos";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="text-center">Contacto con .NET 7 MVC</h1>
+<div class="row">
+    <div class="offset-9 col-3 mb-3">
+        <a asp-action="Create" asp-controller="Home" class="btn-secondary d-block mx-auto btn-lg">
+           <i class="bi bi-file-plus-fill"></i> Agregar contacto
+        </a>
+    </div>
 </div>
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Lista de contactos</strong></h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    @if (Model.Count() > 0)
+                    {
+                        <table class="table table-bordered" id="tblContacts" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.ContactId)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Firstname)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Lastname)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Phone)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Cellphone)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Email)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var contact in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => contact.ContactId)</td>
+                                        <td>@Html.DisplayFor(m => contact.Firstname)</td>
+                                        <td>@Html.DisplayFor(m => contact.Lastname)</td>
+                                        <td>@Html.DisplayFor(m => contact.Phone)</td>
+                                        <td>@Html.DisplayFor(m => contact.Cellphone)</td>
+                                        <td>@Html.DisplayFor(m => contact.Email)</td>
+                                        <td>
+                                            <a class="btn btn-warning" asp-action="Edit" asp-controller="Home" asp-route-id="@contact.ContactId"> <i class="bi bi-pencil-fill"></i> Editar</a>
+                                            <a class="btn btn-secondary" asp-action="Detail" asp-controller="Home" asp-route-id="@contact.ContactId"> <i class="bi bi-info-circus-fill"></i> Detalle</a>
+                                            <a class="btn btn-danger" asp-action="Delete" asp-controller="Home" asp-route-id="@contact.ContactId"> <i class="bi bi-eraser-fill"></i> Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No hay contactos</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            //Llamar a datatable
+            $('#tblContacts').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
