@@ -1,0 +1,32 @@
+﻿@model CRUDNet7MVC.Models.Contact
+@{
+    ViewData["Title"] = "Borrar - Contacto";
+}
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Borrado de contacto</strong></h3>
+            </div>
+            <div class="card-body">
+                <form asp-action="Delete" method="POST">
+                    <div class="form-group">
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Nombre: </strong>@Html.DisplayFor(m => m.Firstname)</li>
+                            <li class="list-group-item"><strong>Apellido: </strong>@Html.DisplayFor(m => m.Lastname)</li>
+                            <li class="list-group-item"><strong>Teléfono: </strong>@Html.DisplayFor(m => m.Phone)</li>
+                            <li class="list-group-item"><strong>Celular: </strong>@Html.DisplayFor(m => m.Cellphone)</li>
+                            <li class="list-group-item"><strong>Correo Electrónico: </strong>@Html.DisplayFor(m => m.Email)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-danger  d-block mx-auto"><i class="bi bi-eraser-fill"></i>Borrar</button>
+                    </div>
+                </form>
+                <a asp-controller="Home" asp-action="Index">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<CRUDNet7MVC.Models.Contact>
 @{
-    ViewData["Title"] = "Lista de Contactos";
+    ViewData["Title"] = "Listado - Contactos";
 }
 
-<h1 class="text-center">Contacto con .NET 7 MVC</h1>
+<h1 class="text-center">Lista de Contactos</h1>
 <div class="row">
     <div class="offset-9 col-3 mb-3">
-        <a asp-action="Create" asp-controller="Home" class="btn-secondary d-block mx-auto btn-lg">
+        <a asp-action="Create" asp-controller="Home" class="btn-secondary d-block mx-auto btn-lg text-center" style="text-decoration: none;">
            <i class="bi bi-file-plus-fill"></i> Agregar contacto
         </a>
     </div>
@@ -25,19 +25,18 @@
                         <table class="table table-bordered" id="tblContacts" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>@Html.DisplayNameFor(m => m.ContactId)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Firstname)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Lastname)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Phone)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Cellphone)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Email)</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Teléfono</th>
+                                    <th>Celular</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var contact in Model)
                                 {
                                     <tr>
-                                        <td>@Html.DisplayFor(m => contact.ContactId)</td>
                                         <td>@Html.DisplayFor(m => contact.Firstname)</td>
                                         <td>@Html.DisplayFor(m => contact.Lastname)</td>
                                         <td>@Html.DisplayFor(m => contact.Phone)</td>
@@ -45,7 +44,7 @@
                                         <td>@Html.DisplayFor(m => contact.Email)</td>
                                         <td>
                                             <a class="btn btn-warning" asp-action="Edit" asp-controller="Home" asp-route-id="@contact.ContactId"> <i class="bi bi-pencil-fill"></i> Editar</a>
-                                            <a class="btn btn-secondary" asp-action="Detail" asp-controller="Home" asp-route-id="@contact.ContactId"> <i class="bi bi-info-circus-fill"></i> Detalle</a>
+                                            <a class="btn btn-primary" asp-action="Detail" asp-controller="Home" asp-route-id="@contact.ContactId"> <i class="bi bi-info-circus-fill"></i> Detalle</a>
                                             <a class="btn btn-danger" asp-action="Delete" asp-controller="Home" asp-route-id="@contact.ContactId"> <i class="bi bi-eraser-fill"></i> Eliminar</a>
                                         </td>
                                     </tr>
@@ -55,7 +54,7 @@
                     }
                     else
                     {
-                        <p>No hay contactos</p>
+                        <p style="margin-bottom: 0px;">No hay contactos</p>
                     }
                 </div>
             </div>

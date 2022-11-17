@@ -3,23 +3,48 @@
     ViewData["Title"] = "Crear Contacto";
 }
 
-<h1 class="text-center">Contacto con .NET 7 MVC</h1>
-<div class="row">
-    <div class="offset-9 col-3 mb-3">
-        <a asp-action="Create" asp-controller="Home" class="btn-secondary d-block mx-auto btn-lg">
-            <i class="bi bi-file-plus-fill"></i> Agregar contacto
-        </a>
-    </div>
-</div>
-
 <div class="row">
     <div class="offset-12">
         <div class="card border">
             <div class="card-header bg-dark">
-                <h3 class="text-white"><strong>Lista de contactos</strong></h3>
+                <h3 class="text-white"><strong>Creación de contacto</strong></h3>
             </div>
             <div class="card-body">
-               
+               <form asp-action="Create" method="POST">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="form-label">Nombre</label>
+                    <input asp-for="Firstname" class="form-control" placeholder="Ingresa el nombre *"/>
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-3">Apellido</label>
+                    <input asp-for="Lastname" class="form-control" placeholder="Ingresa el apellido *" />
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-3">Teléfono</label>
+                    <input asp-for="Phone" class="form-control" placeholder="Ingresa el teléfono" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-3">Celular</label>
+                    <input asp-for="Cellphone" class="form-control" placeholder="Ingresa el celular *" />
+                    <span asp-validation-for="Cellphone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-3">Correo Electrónico</label>
+                    <input asp-for="Email" class="form-control" placeholder="Ingresa el correo electrónico *" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-success d-block mx-auto"> <i class="bi bi-person-fill"></i>Crear contacto</button>
+                </div>
+               </form>
+                <a asp-controller="Home" asp-action="Index">Volver</a>
             </div>
         </div>
     </div>
